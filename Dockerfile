@@ -5,7 +5,7 @@ FROM tomcat:10.1.15-jdk17-temurin
 RUN rm -rf /usr/local/tomcat/webapps/*
 
 # Copy your WAR file to the Tomcat webapps folder
-COPY target/your-app.war /usr/local/tomcat/webapps/ROOT.war
+COPY target/your-app.war /usr/local/tomcat/webapps/demo-0.0.1-SNAPSHOT.war
 
 # Expose Tomcat port
 EXPOSE 8080
