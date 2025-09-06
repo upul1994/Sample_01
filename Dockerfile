@@ -1,13 +1,14 @@
-FROM tomcat:10.1.15-jdk17-temurin
+# Use OpenJDK 17 as base image
+FROM openjdk:17-jdk-slim
 
-# Remove default apps
-RUN rm -rf /usr/local/tomcat/webapps/*
+# Set working directory
+WORKDIR /app
 
-# Copy your WAR
-COPY target/demo-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
+# Copy the WAR file into the container
+COPY target/demo-0.0.1-SNAPSHOT.war app.war
 
-# Expose Tomcat port
+# Expose the port your Spring Boot app uses (default 8080)
 EXPOSE 8080
 
-# Start Tomcat
-CMD ["catalina.sh", "run"]
+# Run the Spring Boot WAR
+ENTRYPOINT ["java", "-jar", "app.war"]
